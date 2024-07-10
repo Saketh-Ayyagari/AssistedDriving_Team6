@@ -69,14 +69,19 @@ def update_contour():
    contours = rc_utils.find_contours(image, HSV[0], HSV[1])
    max_contour = rc_utils.get_largest_contour(contours)
    contour_center = rc_utils.get_contour_center(max_contour)
+   rc_utils.draw_contours(color_image=image, contour=max_contour, color=(0, 255, 0))
+   rc.display.show_color_image(image)
+
 
 def line_follow():
    global contour_center
    global angle
    update_contour()
    SETPOINT = rc.camera.get_width()//2
-   error = SETPOINT - contour_center[1]
-   angle = rc_utils.remap_range(error, -320, 320, 1, -1)
+   if contour_center is not None:
+      error = SETPOINT - contour_center[1]
+      angle = rc_utils.remap_range(error, -320, 320, 1, -1)
+
 
 def start():
     global speed
