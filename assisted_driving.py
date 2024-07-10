@@ -62,13 +62,9 @@ global angle_offset
 def start():
     global speed
     global angle
-    global speed_offset
-    global angle_offset
 
     speed = 0.0 # The initial speed is at 1.0
     angle = 0.0 # The initial turning angle is 0.0
-    speed_offset = 0.05 # The initial speed offset is 0.5
-    angle_offset = 0.05 # The inital angle offset is 0.5
 
     # This tells the car to begin at a standstill
     rc.drive.stop()
@@ -79,19 +75,18 @@ def start():
 def update():
     global speed
     global angle
-    global speed_offset
-    global angle_offset
     
     
-      
-    
-    (x, y) = rc.controller.get_joystick(rc.controller.Joystick.LEFT)
-    if x > 0:
-        angle = angle_offset
-    elif x < 0:
-        angle = -angle_offset
+    right = rc.controller.get_trigger(rc.controller.Trigger.LEFT)
+    left = rc.controller.get_trigger(rc.controller.Trigger.LEFT)
+    if right > 0:
+        speed = right
+    elif left > 0:
+        speed = left
     else:
-        angle = 0
+        speed = 0
+
+    angle, __ = rc.controller.get_joystick(rc.controller.Joystick.LEFT)
 
 
     # Send the speed and angle values to the RACECAR
