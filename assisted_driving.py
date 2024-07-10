@@ -77,12 +77,12 @@ def update():
     global angle
     
     
-    right = rc.controller.get_trigger(rc.controller.Trigger.LEFT)
+    right = rc.controller.get_trigger(rc.controller.Trigger.RIGHT)
     left = rc.controller.get_trigger(rc.controller.Trigger.LEFT)
     if right > 0:
         speed = right
     elif left > 0:
-        speed = left
+        speed = -left
     else:
         speed = 0
 
