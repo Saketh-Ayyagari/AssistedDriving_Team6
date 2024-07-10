@@ -7,7 +7,7 @@ File Name: lab1.py
 
 Title: Lab 1 - RACECAR Controller
 
-Author: Team 8
+Author: Team 8: Saketh, Chris, Sophie, Cian
 
 Purpose: Using a Python script and the data polled from the controller module,
 write code to replicate a manual control scheme for the RACECAR. Gain a mastery
